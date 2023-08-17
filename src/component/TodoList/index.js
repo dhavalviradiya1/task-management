@@ -32,7 +32,6 @@ const TodoList = () => {
   };
 
   const handleTaskManagement = (data) => {
-    console.log(data);
     const taskDataTemp = [...taskData];
     if (isTaskAdd) {
       taskDataTemp.push(data);
@@ -72,41 +71,40 @@ const TodoList = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <Button
-          buttonType={"button"}
-          buttonLabel={HOME_PAGE.ADD_TASK}
-          buttonClass={
-            "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          }
-          buttonClick={handleAddTask}
-        />
-        <Button
-          buttonType={"button"}
-          buttonLabel={HOME_PAGE.CLEAR_ALL}
-          buttonClass={
-            "text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-          }
-          buttonClick={handleClearAllTask}
-        />
+      <div className="flex justify-between">
+        <h1 className="font-medium text-2xl">Task Management</h1>
+        <div className="flex">
+          <Button
+            buttonType="button"
+            buttonLabel={HOME_PAGE.ADD_TASK}
+            buttonClass={
+              "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            }
+            buttonClick={handleAddTask}
+          />
+          <Button
+            buttonType="button"
+            buttonLabel={HOME_PAGE.CLEAR_ALL}
+            buttonClass={
+              "text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+            }
+            buttonClick={handleClearAllTask}
+          />
+        </div>
       </div>
-      <div>
-        <Table
-          tableData={taskData}
-          handleDeleteTask={handleDeleteTask}
-          handleEditTask={handleEditTask}
-          handleChangeMarkAsRead={handleChangeMarkAsRead}
-        />
-      </div>
-      <div>
-        <HandleTaskModal
-          isShowModal={isOpenHandleTaskModal}
-          handleClose={HandleCloseTaskModal}
-          modalLabel={modalLabel}
-          handleTaskManagement={handleTaskManagement}
-          editTaskData={!isTaskAdd && editTaskData}
-        />
-      </div>
+      <Table
+        tableData={taskData}
+        handleDeleteTask={handleDeleteTask}
+        handleEditTask={handleEditTask}
+        handleChangeMarkAsRead={handleChangeMarkAsRead}
+      />
+      <HandleTaskModal
+        isShowModal={isOpenHandleTaskModal}
+        handleClose={HandleCloseTaskModal}
+        modalLabel={modalLabel}
+        handleTaskManagement={handleTaskManagement}
+        editTaskData={!isTaskAdd && editTaskData}
+      />
     </>
   );
 };
